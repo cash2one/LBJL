@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/layout_content_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent" />
+
+    <RadioGroup
+        android:id="@+id/rg_main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_gift_bottom"
+            style="@style/style_main_bottom"
+            android:checked="true"
+            android:drawableBottom="@drawable/main_bottom_gift" />
+
+        <RadioButton
+            android:id="@+id/rb_game_bottom"
+            style="@style/style_main_bottom"
+            android:drawableBottom="@drawable/main_bottom_game" />
+
+        <RadioButton
+            android:id="@+id/rb_hot_bottom"
+            style="@style/style_main_bottom"
+            android:drawableBottom="@drawable/main_bottom_hot" />
+
+        <RadioButton
+            android:id="@+id/rb_feature_bottom"
+            style="@style/style_main_bottom"
+            android:drawableBottom="@drawable/main_bottom_feature" />
+    </RadioGroup>
+</LinearLayout>
