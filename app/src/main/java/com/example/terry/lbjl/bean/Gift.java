@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Terry on 2016/9/26.
  */
-public class GiftBean {
+public class Gift {
 
     /**
      * ad : [{"id":249,"title":"绝世武神独家礼包（安卓）","flag":1,"iconurl":"/allimgs/img_iad/_1474623667919.jpg","addtime":"2016-09-17","giftid":"1474618510","appName":"绝世武神","appLogo":"/allimgs/img_iapp/201607/_1469611677571.jpg","appId":1444892111},{"id":246,"title":"天天炫舞中秋独家礼包","flag":1,"iconurl":"/allimgs/img_iad/_1473751476804.jpg","addtime":"2016-09-15","giftid":"1473749901","appName":"天天炫舞","appLogo":"/allimgs/img_iapp/201609/_1474340811708.png","appId":2496048},{"id":243,"title":"航海王强者之路中秋媒体节日礼包","flag":1,"iconurl":"/allimgs/img_iad/_1473316667867.jpg","addtime":"2016-09-14","giftid":"1473316129","appName":"航海王强者之路","appLogo":"/allimgs/img_iapp/201511/_1448446144213.png","appId":1448446177},{"id":245,"title":"大秦帝国OL中秋独家礼包 ","flag":1,"iconurl":"/allimgs/img_iad/_1473749952262.jpg","addtime":"2016-09-14","giftid":"1473742131","appName":"大秦帝国OL","appLogo":"/allimgs/img_iapp/201607/_1469687930154.jpg","appId":1467784200},{"id":247,"title":"风暴部落中秋礼包","flag":1,"iconurl":"/allimgs/img_iad/_1473831738979.jpg","addtime":"2016-09-13","giftid":"1473826961","appName":"风暴部落","appLogo":"/allimgs/img_iapp/201609/_1473238539795.png","appId":1451287404}]

@@ -1,15 +1,19 @@
 package com.example.terry.lbjl.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.terry.lbjl.R;
-import com.example.terry.lbjl.bean.GiftBean;
+import com.example.terry.lbjl.bean.Gift;
 import com.example.terry.lbjl.constants.Constants;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +25,15 @@ import butterknife.ButterKnife;
 /**
  * Created by Terry on 2016/9/26.
  */
-public class GiftListViewAdapter extends BaseAdapter {
+public class GiftLvAdapter extends BaseAdapter {
 
-    List<GiftBean.ListBean> listBeen;
+    List<Gift.ListBean> listBeen;
     Context context;
+
+    public GiftLvAdapter(List<Gift.ListBean> listBeen, Context context) {
+        this.listBeen = listBeen;
+        this.context = context;
+    }
 
     @Override
     public int getCount() {
@@ -32,7 +41,7 @@ public class GiftListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public GiftBean.ListBean getItem(int position) {
+    public Gift.ListBean getItem(int position) {
         return listBeen.get(position);
     }
 
@@ -50,13 +59,19 @@ public class GiftListViewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        GiftBean.ListBean bean = listBeen.get(position);
-        Picasso.with(context).load(Constants.GIFT_MAIN + bean.getIconurl()).into(viewHolder.mIconIv);
-//        viewHolder.mIconIv.setImageResource(listBeen.get(position).getIconurl());
+        Gift.ListBean bean = listBeen.get(position);
+        Picasso.with(context).load(Constants.GIFT_MAIN + bean.getIconurl()).
+                config(Bitmap.Config.RGB_565).into(viewHolder.mIconIv);
         viewHolder.mGNameTv.setText(bean.getGname());
         viewHolder.mGiftNameTv.setText(bean.getGiftname());
-        viewHolder.mNumberTv.setText(bean.getNumber());
+        int num = bean.getNumber();
+        viewHolder.mNumberTv.setText(String.valueOf(num));
         viewHolder.mAddTimeTv.setText(bean.getAddtime());
+        if (num == 0) {
+            viewHolder.mGetBtn.setBackgroundColor(Color.WHITE);
+            viewHolder.mGetBtn.setTextColor(Color.red(R.color.colorAccent));
+            viewHolder.mGetBtn.setText("淘号");
+        }
         return convertView;
     }
 
@@ -71,6 +86,8 @@ public class GiftListViewAdapter extends BaseAdapter {
         TextView mNumberTv;
         @BindView(R.id.tv_addtime)
         TextView mAddTimeTv;
+        @BindView(R.id.btn_get)
+        Button mGetBtn;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
