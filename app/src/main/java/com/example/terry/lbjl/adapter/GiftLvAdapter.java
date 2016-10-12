@@ -68,9 +68,9 @@ public class GiftLvAdapter extends BaseAdapter {
         viewHolder.mNumberTv.setText(String.valueOf(num));
         viewHolder.mAddTimeTv.setText(bean.getAddtime());
         if (num == 0) {
-            viewHolder.mGetBtn.setBackgroundColor(Color.WHITE);
-            viewHolder.mGetBtn.setTextColor(Color.red(R.color.colorAccent));
             viewHolder.mGetBtn.setText("淘号");
+        } else {
+            viewHolder.mGetBtn.setText("立即领取");
         }
         return convertView;
     }

@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.terry.lbjl.R;
 
-public class SearchActivity extends AppCompatActivity {
+public class FeatureNewDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_feature_new_detail);
     }
 }

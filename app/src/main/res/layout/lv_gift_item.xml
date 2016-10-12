@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:padding="5dp">
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginRight="5dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/tv_gname"
@@ -19,7 +20,7 @@
         android:layout_toEndOf="@+id/iv_icon"
         android:layout_toRightOf="@+id/iv_icon"
         android:text="啪啪巫妖王"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tv_giftname"
@@ -28,7 +29,7 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/iv_icon"
         android:layout_toRightOf="@+id/iv_icon"
-        android:text="国庆礼包" />
+        android:text="国庆礼包"/>
 
     <TextView
         android:id="@+id/tv_count"
@@ -37,7 +38,7 @@
         android:layout_alignBottom="@+id/iv_icon"
         android:layout_toEndOf="@+id/iv_icon"
         android:layout_toRightOf="@+id/iv_icon"
-        android:text="数量:" />
+        android:text="数量:"/>
 
     <TextView
         android:id="@+id/tv_number"
@@ -47,7 +48,7 @@
         android:layout_toEndOf="@+id/tv_count"
         android:layout_toRightOf="@+id/tv_count"
         android:text="New Text"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/tv_addtime"
@@ -57,18 +58,16 @@
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/tv_number"
         android:layout_toRightOf="@+id/tv_number"
-        android:text="2016-09-23" />
+        android:text="2016-09-23"/>
 
     <Button
         android:id="@+id/btn_get"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@color/colorAccent"
-        android:text="立即领取"
-        android:textColor="#ffffff" />
-
-
+        android:background="@color/mainColor"
+        android:textColor="@android:color/white"
+        />
 </RelativeLayout>

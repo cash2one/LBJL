@@ -18,21 +18,21 @@ import okhttp3.Response;
 public class HttpUtils {
 
     private static HttpUtils httpUtils;
-    DataCallBack dataCallBack;
+//    DataCallBack dataCallBack;
     Handler handler = new Handler();
 
     public static HttpUtils getHttpUtils() {
-        if (httpUtils == null) {
+       if (httpUtils == null) {
             httpUtils = new HttpUtils();
-        }
+      }
         return httpUtils;
     }
 
-    public void setDataCallBack(DataCallBack dataCallBack) {
-        this.dataCallBack = dataCallBack;
-    }
+//    public void setDataCallBack(DataCallBack dataCallBack) {
+//        this.dataCallBack = dataCallBack;
+//    }
 
-    public void getDataFromNetWork(String path) {
+    public void getDataFromNetWork(String path,final DataCallBack dataCallBack) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(path).build();
         Call call = client.newCall(request);
@@ -53,7 +53,6 @@ public class HttpUtils {
                             @Override
                             public void run() {
                                 dataCallBack.setDataCallBack(data);
-
                             }
                         });
                     }

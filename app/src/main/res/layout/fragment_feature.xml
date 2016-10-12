@@ -1,13 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.terry.lbjl.fragment.FeatureFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.example.terry.lbjl.fragment.FeatureFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_feature"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="特色" />
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/mainColor"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/mainColor"/>
 
-</FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_feature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tab_feature"/>
+
+</RelativeLayout>

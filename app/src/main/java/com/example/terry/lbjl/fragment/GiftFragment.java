@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +26,8 @@ import com.example.terry.lbjl.callback.DataCallBack;
 import com.example.terry.lbjl.constants.Constants;
 import com.example.terry.lbjl.http.HttpUtils;
 import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,25 +43,18 @@ public class GiftFragment extends Fragment implements DataCallBack,
         ViewPager.OnPageChangeListener, AdapterView.OnItemClickListener {
 
     @BindView(R.id.lv_gift)
-    ListView mGiftLv;
+    PullToRefreshListView mGiftLv;
     @BindView(R.id.vp_gift)
     ViewPager mGiftVp;
     @BindView(R.id.point_container)
     LinearLayout point_container;
     private boolean stopThread = false;
     Gift gift;
+    private int page = 1;
+    HttpUtils httpUtils;
 
     public GiftFragment() {
         // Required empty public constructor
-    }
-
-    public static GiftFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        GiftFragment fragment = new GiftFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     Handler handler = new Handler() {
@@ -82,20 +76,34 @@ public class GiftFragment extends Fragment implements DataCallBack,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gift, container, false);
         ButterKnife.bind(this, view);
-        HttpUtils httpUtils = HttpUtils.getHttpUtils();
-        httpUtils.getDataFromNetWork(Constants.GIFT_PATH);
-        httpUtils.setDataCallBack(this);
-        mGiftLv.setOnItemClickListener(this);
+        httpUtils = HttpUtils.getHttpUtils();
+        httpUtils.getDataFromNetWork(String.format(Constants.GIFT_PATH + (page++)),this);
+//        httpUtils.setDataCallBack(this);
         return view;
     }
 
 
     @Override
-    public void setDataCallBack(String data) {
+    public void setDataCallBack(final String data) {
         Gson gson = new Gson();
+//        Log.e("====","===="+data);
         gift = gson.fromJson(data, Gift.class);
         GiftLvAdapter lvAdapter = new GiftLvAdapter(gift.getList(), getActivity());
         mGiftLv.setAdapter(lvAdapter);
+        mGiftLv.setMode(PullToRefreshBase.Mode.BOTH);
+        mGiftLv.setOnItemClickListener(this);
+        mGiftLv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                httpUtils.getDataFromNetWork(Constants.GIFT_PATH + page,GiftFragment.this);
+                mGiftLv.onRefreshComplete();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+        });
 
         List<View> viewList = new ArrayList<>();
         List<Gift.AdBean> list = gift.getAd();
@@ -169,8 +177,9 @@ public class GiftFragment extends Fragment implements DataCallBack,
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), GiftDetailActivity.class);
-        intent.putExtra("id", gift.getList().get(position).getId());
+        Intent intent = new Intent();
+        intent.putExtra("id", gift.getList().get(position - 1).getId());
+        intent.setClass(getActivity(), GiftDetailActivity.class);
         startActivity(intent);
     }
 }
